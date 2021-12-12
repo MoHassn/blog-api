@@ -1,9 +1,16 @@
 require("dotenv").config();
 import express, { Request, Response } from "express";
+import cors from "cors";
+import { userRouter } from "./routes/user.route";
 import { connectToDB } from "./dbConnection";
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+app.use(express.json());
+app.use(cors());
+
+app.use("/", userRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello Express With Typescript");
