@@ -5,3 +5,5 @@ const authRouter = Router();
 
 authRouter.post("/register", createUser);
 authRouter.post("/login", login);
+
+export { authRouter };
