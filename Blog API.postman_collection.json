@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "43de750e-4d33-4ec4-a477-b0d6440eda8f",
+		"name": "Blog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New User (Register)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Mohamed Saeed\",\r\n    \"jobTitle\": \"Software Developer\",\r\n    \"email\": \"hassans@gmail.com\",\r\n    \"password\": \"1password123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"hassan85@gmail.com\",\r\n    \"password\": \"password123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Create  A Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"A new Blog Title\",\r\n    \"body\": \"a body of the blog\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/blogs"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\":\"comments\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/blogs/61b67e78258e43d895428905/comments"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific blog",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/blogs/61b67e78258e43d895428905"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Blogs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/blogs"
+			},
+			"response": []
+		},
+		{
+			"name": "Search blogs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/blogs?search=new",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"blogs"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "new"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like a Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"url": "{{host}}/blogs/61b67e78258e43d895428905/likes"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/users/61b53e7623c06ad2e5fd5bee"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSGFzc2FuIE1vaGFtZWQiLCJqb2JUaXRsZSI6IkRldmVsb3BlciIsImlkIjoiNjFiNjNlNjlhYTJkYjFkYjhmM2YyZGNiIiwiaWF0IjoxNjM5MzYxMjY5fQ.3MfK00aPh7QWnbVzrKzxAsBiDTsLYdZi3ov9d9hDeEo"
+		}
+	]
+}
