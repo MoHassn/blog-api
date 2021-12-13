@@ -102,6 +102,9 @@ const getUser = async (req: Request, res: Response) => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId, "name jobTitle email _id");
+    if (!user) {
+      return res.status(404).send({ message: "Error 404, not found" });
+    }
     return res.status(200).send(user);
   } catch (e) {
     console.log("Error", e);

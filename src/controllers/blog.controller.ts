@@ -25,6 +25,9 @@ const getBlog = async (req: Request, res: Response) => {
     const blog = await Blog.findById(blogId)
       .populate("comments")
       .populate("author");
+    if (!blog) {
+      return res.status(404).send({ message: "Error 404, not found" });
+    }
     return res.status(200).send({ blog });
   } catch (e) {
     console.log("Error", e);
