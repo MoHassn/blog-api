@@ -88,4 +88,25 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-export { createUser, login };
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find({}, "name jobTitle email _id");
+    return res.status(200).send(users);
+  } catch (e) {
+    return res
+      .status(500)
+      .send({ message: "Error occurred while getting authors" });
+  }
+};
+const getUser = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findById(userId, "name jobTitle email _id");
+    return res.status(200).send(user);
+  } catch (e) {
+    console.log("Error", e);
+    return res.status(500).send({ message: "Error occurred getting user" });
+  }
+};
+
+export { createUser, login, getUsers, getUser };
